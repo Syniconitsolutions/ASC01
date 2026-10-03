@@ -400,37 +400,71 @@ p{margin:0;}
 .tech-note{font-size:13px;color:#7E93AC;max-width:600px;line-height:1.7;}
 
 /* ===================== 13. PROJECTS ===================== */
+/* ===================== 13. PROJECTS ===================== */
 .filter-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px;}
 .filter-btn{
   border:1px solid var(--line);border-radius:30px;padding:10px 20px;font-size:13.5px;font-weight:700;color:var(--muted);transition:.2s;
 }
 .filter-btn.active,.filter-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+
 .projects-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line);}
+
 .project-card{position:relative;background:var(--navy);aspect-ratio:3/4;overflow:hidden;grid-column:span 1;}
 .project-card:nth-child(4n+1),.project-card:nth-child(4n+4){grid-column:span 2;aspect-ratio:16/11;}
-.project-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease, filter .6s ease;filter:saturate(.85);}
-.project-card::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(7,21,35,.92) 0%, rgba(7,21,35,.15) 55%, rgba(7,21,35,.55) 100%);transition:opacity .4s ease;}
+
+/* layer 0: image (original colours, kuthla overlay nahi) */
+.project-card img{
+  position:absolute;inset:0;z-index:0;
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s ease;
+}
+
+/* layer 1: fakt khalchya bhagat halka fade, varcha image purn clear */
+.project-card::before{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:46%;z-index:1;pointer-events:none;
+  background:linear-gradient(0deg,
+    rgba(7,21,35,.92) 0%,
+    rgba(7,21,35,.70) 40%,
+    rgba(7,21,35,.28) 75%,
+    rgba(7,21,35,0) 100%);
+}
+
+/* layer 2: text */
+.project-meta{position:absolute;left:0;right:0;bottom:0;padding:22px;z-index:2;}
+.project-tag{
+  font-size:11px;letter-spacing:.1em;font-weight:700;color:#E3C27F;
+  display:block;margin-bottom:8px;text-shadow:0 1px 6px rgba(0,0,0,.6);
+}
+.project-meta h3{
+  color:#fff;font-size:18px;margin-bottom:6px;text-shadow:0 1px 6px rgba(0,0,0,.6);
+}
+.project-meta span.sys{font-size:12.5px;color:#E6EDF6;text-shadow:0 1px 6px rgba(0,0,0,.6);}
+
+/* layer 3: zoom icon (hover var) */
 .project-card::after{
   content:"\f065";font-family:"Font Awesome 6 Free";font-weight:900;
-  position:absolute;top:50%;left:50%;z-index:3;
-  width:54px;height:54px;border:1.5px solid rgba(255,255,255,.55);border-radius:50%;
+  position:absolute;top:42%;left:50%;z-index:3;
+  width:54px;height:54px;border:1.5px solid rgba(255,255,255,.8);border-radius:50%;
+  background:rgba(7,21,35,.55);
   display:flex;align-items:center;justify-content:center;
   font-size:19px;color:#fff;
   transform:translate(-50%,-50%) scale(.6);opacity:0;
   transition:opacity .3s ease, transform .3s ease;pointer-events:none;
 }
-.project-card:hover img{transform:scale(1.1);filter:saturate(1.05);}
-.project-card:hover::before{opacity:.75;}
+
+/* hover: image fakt halki zoom hote, dark honar nahi */
+.project-card:hover img{transform:scale(1.06);}
 .project-card:hover::after{opacity:1;transform:translate(-50%,-50%) scale(1);}
-.project-meta{position:absolute;left:0;right:0;bottom:0;padding:22px;z-index:2;}
-.project-tag{font-size:11px;letter-spacing:.1em;font-weight:700;color:var(--gold);display:block;margin-bottom:8px;}
-.project-meta h3{color:#fff;font-size:17px;margin-bottom:6px;}
-.project-meta span.sys{font-size:12.5px;color:#B9C7DA;}
+
 .project-card.hidden{display:none;}
+
+/* tablet */
 @media(max-width:991px){
   .projects-grid{grid-template-columns:repeat(2,1fr);}
   .project-card:nth-child(4n+1),.project-card:nth-child(4n+4){grid-column:span 1;aspect-ratio:3/4;}
 }
+
+/* mobile */
 @media(max-width:576px){.projects-grid{grid-template-columns:1fr;}}
 
 /* ===================== 14. WHY ===================== */
