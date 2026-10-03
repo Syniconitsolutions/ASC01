@@ -6,8 +6,8 @@
 }
 
 .site-logo {
-  height: 48px; /* उंची कमी केली (तुम्ही 40px ते 50px मध्ये ठेवू शकता) */
-  width: auto;  /* रुंदी आपोआप सेट होईल, जेणेकरून फोटो ताणला जाणार नाही */
+  height: 48px; 
+  width: auto;  
   object-fit: contain;
   display: block;
 }
@@ -110,7 +110,6 @@ p{margin:0;}
 .nav {
   position:fixed;top:0;left:0;right:0;z-index:1100;
   padding:22px 0;transition:background .3s ease,padding .3s ease,box-shadow .3s ease;
-  /* इथे background टाकू नका, ते बाय डिफॉल्ट ट्रान्सपरंट राहील */
 }
 
 .nav.scrolled {
@@ -153,7 +152,7 @@ p{margin:0;}
 .mobile-panel .btn{margin-top:30px;align-self:flex-start;}
 
 /* ===================== SCROLLED STATE COLORS ===================== */
-/* जेव्हा पट्टी पांढरी होईल, तेव्हा हे रंग लागू होतील */
+
 
 .nav.scrolled .logo-word {
   color: var(--navy);
